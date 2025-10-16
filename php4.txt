@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMPLE PHP Validation</title>
+    <style>.error { color: red; }</style>
+</head>
+<body>
+<?php
+$name = $email = $password = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars(trim($_POST["name"]));
+    $email = htmlspecialchars(trim($_POST["email"]));
+    $password = htmlspecialchars(trim($_POST["password"]));
+}
+?>
+<form method="post" action="">
+    Name: <input type="text" name="name" required pattern="^[A-Za-z ]+$"><br><br>
+    Email: <input type="email" name="email" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
+    Password: <input type="password" name="password" required pattern=".{8,13}"><br><br>
+    <input type="submit" value="Submit">
+</form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        echo "<h2>Your Input:</h2>";
+        echo "Name:$name<br>";
+        echo "Email: $email<br>";
+        echo "Password: $password<br>";
+    }
+?>
+</body>
+</html>
